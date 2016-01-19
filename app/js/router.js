@@ -2,14 +2,13 @@
  * router.js initialises the backbone.js router
  * to resolve requests
  */
-
 define([
     'jquery',
     'backbone',
     'js/views/IndexView',
     'js/views/TestView'
 ], function($, Backbone, IndexView, TestView) {   
-    /*
+    /**
      * Define routes using :params and *splats if necessary
      * 'URL': 'function' e.g. 'user/:1': 'getUser' 
      */
@@ -25,7 +24,7 @@ define([
      */
     var initialize = function() {
         
-        var route = new AppRouter;  /* instantiate router object*/
+        var route = new AppRouter;
 
         route.on('route:showHelloWorld', function(){
            var indexView = new IndexView();
@@ -40,8 +39,8 @@ define([
         Backbone.history.start(); /* Start routing URLS */
     };
     
-    /* return the require.js module value */
-    return {
+    
+    return {/* return the require.js module value */
         initialize: initialize
     };
  

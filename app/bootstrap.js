@@ -2,9 +2,7 @@
  * bootstrap.js is called from index.html and
  * intiates the application
  */
-
-/* define common path shortcuts for require.js */
-require.config({
+require.config({/* define common path shortcuts for require.js */
     paths: {
         jquery: 'js/vendor/jquery',
         underscore: 'js/vendor/underscore',
@@ -14,7 +12,7 @@ require.config({
         router: 'js/router'
     },
     shim: {
-        qunit: {
+        qunit: {/* shim qunit to work with require.js*/
             exports: 'qunit',
             init: function() {
                 qunit.config.autoload = false;
@@ -25,8 +23,7 @@ require.config({
 });
 
 
-/* call the router */
-require(['router'], function(Router) { 
+require(['router'], function(Router) { /* call the router */
     Router.initialize();        
 });
 

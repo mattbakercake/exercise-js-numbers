@@ -1,9 +1,47 @@
+/**
+ * numberTest.js defines unit tests to check
+ * output of the number model
+ */
 define([
     '../models/NumberModel'
 ],
     function(numberModel) {
+        
+        /**
+         * run object contains test suites and assertions
+         */
         var run = function() {
             var Number = new numberModel();
+            
+            test('test getNumLength', function(assert) {
+                assert.strictEqual(Number.getNumLength(0),1);
+                assert.strictEqual(Number.getNumLength(5),1);
+                assert.strictEqual(Number.getNumLength(10),2);
+                assert.strictEqual(Number.getNumLength(100),3);
+                assert.strictEqual(Number.getNumLength(1000),4);
+                assert.strictEqual(Number.getNumLength(10000),5);
+                assert.strictEqual(Number.getNumLength(100000),6);
+                assert.strictEqual(Number.getNumLength(1000000),7);
+            });
+            
+            test('test getRemainder', function(assert) {
+                assert.strictEqual(Number.getRemainder(0,10),0);
+                assert.strictEqual(Number.getRemainder(5,10),5);
+                assert.strictEqual(Number.getRemainder(10,10),0);
+                assert.strictEqual(Number.getRemainder(11,10),1);
+                assert.strictEqual(Number.getRemainder(63,10),3);
+                assert.strictEqual(Number.getRemainder(100,100),0);
+                assert.strictEqual(Number.getRemainder(101,100),1);
+                assert.strictEqual(Number.getRemainder(1000,1000),0);
+                assert.strictEqual(Number.getRemainder(1100,1000),100);
+                assert.strictEqual(Number.getRemainder(10000,10000),0);
+                assert.strictEqual(Number.getRemainder(10563,10000),563);
+                assert.strictEqual(Number.getRemainder(100000,100000),0);
+                assert.strictEqual(Number.getRemainder(102365,100000),2365);
+                assert.strictEqual(Number.getRemainder(1000000,1000000),0);
+                assert.strictEqual(Number.getRemainder(1000543,1000000),543);
+                
+            });
             
             test('number model testing strings 0-19', function(assert) {
                 assert.strictEqual(Number.getNumString(0), 'Zero');
@@ -28,8 +66,31 @@ define([
                 assert.strictEqual(Number.getNumString(19), 'Nineteen');  
             });
             
+            test('number model testing strings 20,30,40..90', function(assert) {
+                assert.strictEqual(Number.getNumString(20), 'Twenty');
+                assert.strictEqual(Number.getNumString(30), 'Thirty');
+                assert.strictEqual(Number.getNumString(40), 'Fourty');
+                assert.strictEqual(Number.getNumString(50), 'Fifty');
+                assert.strictEqual(Number.getNumString(60), 'Sixty');
+                assert.strictEqual(Number.getNumString(70), 'Seventy');
+                assert.strictEqual(Number.getNumString(80), 'Eighty');
+                assert.strictEqual(Number.getNumString(90), 'Ninety');  
+            });
+            
+            test('number model testing compound tens 21,32 etc', function(assert) {
+                assert.strictEqual(Number.getNumString(21), 'Twenty One');
+                assert.strictEqual(Number.getNumString(32), 'Thirty Two');
+                assert.strictEqual(Number.getNumString(43), 'Fourty Three');
+                assert.strictEqual(Number.getNumString(54), 'Fifty Four');
+                assert.strictEqual(Number.getNumString(65), 'Sixty Five');
+                assert.strictEqual(Number.getNumString(76), 'Seventy Six');
+                assert.strictEqual(Number.getNumString(87), 'Eighty Seven');
+                assert.strictEqual(Number.getNumString(98), 'Ninety Eight');
+                assert.strictEqual(Number.getNumString(99), 'Ninety Nine');
+            });
+            
         };
-        return {run: run};
+        return {run: run}; /* require.js return run object */
     }
 );
 

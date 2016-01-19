@@ -4,6 +4,14 @@
 define([
    'backbone'
 ], function (Backbone) {
+    
+    /**
+     * Number model provides methods for returning
+     * the string version of an integer
+     * 
+     * @property {object} uniqueStrings unique number strings required to build
+     * all number strings
+     */
     var Number = Backbone.Model.extend({
         
         uniqueStrings : {
@@ -39,16 +47,37 @@ define([
        
     });
     
+    /**
+     * getNumLength returns a digit count of the number e.g. 20 would return 2
+     * @param {int} num
+     * @returns {int}
+     */
     Number.prototype.getNumLength = function(num) {
         return num.toString().length;
     };
     
+    /**
+     * getRemainder returns the remainder for a given modulus and number
+     * @param {int} num
+     * @param {int} operand
+     * @returns {int}
+     */
+    Number.prototype.getRemainder = function(num,operand) {
+        return num%operand; //remainder after operand is divided by num
+    };
+    
+    /**
+     * getNumString calls appropriate method based on number length and returns
+     * number string for given integer
+     * @param {int} num
+     * @returns {string}
+     */
     Number.prototype.getNumString = function(num) {
         
         var numLength = this.getNumLength(num);
 
         switch (numLength) {
-            case 1:
+            case 1: //fall through - case 1 & 2 are the same
             case 2:
                 return this.getTens(num);
                 break;
@@ -56,14 +85,24 @@ define([
         
     };
     
+    /**
+     * getTens returns a string representation for numbers 0-99
+     * @param {int} num
+     * @returns {string}
+     */
     Number.prototype.getTens = function(num){
-        if(num > 19 && num%10 !== 0) {
-            var secondNum = this.uniqueStrings[num%10];
-            var firstNum = this.uniqueStrings[num-num%10];
+        
+        var remainder = this.getRemainder(num,10);
+        
+        /* numbers between 20 and 99 */
+        if(num > 19 && remainder !== 0) {
+            var secondNum = this.uniqueStrings[remainder];
+            var firstNum = this.uniqueStrings[num-remainder];
             
             return firstNum + " " + secondNum;
         }
 
+        /* numbers between 9 and 19*/
         return this.uniqueStrings[num];
     };
     
