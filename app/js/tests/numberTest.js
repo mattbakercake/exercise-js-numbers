@@ -114,6 +114,63 @@ define([
                 assert.strictEqual(Number.getNumString(999), 'Nine Hundred And Ninety Nine');
             });
             
+            test('number model testing thousands 1000,2000 etc', function(assert) {
+                assert.strictEqual(Number.getNumString(1000), 'One Thousand');
+                assert.strictEqual(Number.getNumString(2000), 'Two Thousand');
+                assert.strictEqual(Number.getNumString(3000), 'Three Thousand');
+                assert.strictEqual(Number.getNumString(4000), 'Four Thousand');
+                assert.strictEqual(Number.getNumString(5000), 'Five Thousand');
+                assert.strictEqual(Number.getNumString(6000), 'Six Thousand');
+                assert.strictEqual(Number.getNumString(7000), 'Seven Thousand');
+                assert.strictEqual(Number.getNumString(8000), 'Eight Thousand');
+                assert.strictEqual(Number.getNumString(9000), 'Nine Thousand');
+                assert.strictEqual(Number.getNumString(10000), 'Ten Thousand');
+                assert.strictEqual(Number.getNumString(20000), 'Twenty Thousand');
+                assert.strictEqual(Number.getNumString(30000), 'Thirty Thousand');
+                assert.strictEqual(Number.getNumString(40000), 'Fourty Thousand');
+                assert.strictEqual(Number.getNumString(50000), 'Fifty Thousand');
+                assert.strictEqual(Number.getNumString(60000), 'Sixty Thousand');
+                assert.strictEqual(Number.getNumString(70000), 'Seventy Thousand');
+                assert.strictEqual(Number.getNumString(80000), 'Eighty Thousand');
+                assert.strictEqual(Number.getNumString(90000), 'Ninety Thousand');
+                assert.strictEqual(Number.getNumString(100000), 'One Hundred Thousand');
+                assert.strictEqual(Number.getNumString(200000), 'Two Hundred Thousand');
+                assert.strictEqual(Number.getNumString(300000), 'Three Hundred Thousand');
+                assert.strictEqual(Number.getNumString(400000), 'Four Hundred Thousand');
+                assert.strictEqual(Number.getNumString(500000), 'Five Hundred Thousand');
+                assert.strictEqual(Number.getNumString(600000), 'Six Hundred Thousand');
+                assert.strictEqual(Number.getNumString(700000), 'Seven Hundred Thousand');
+                assert.strictEqual(Number.getNumString(800000), 'Eight Hundred Thousand');
+                assert.strictEqual(Number.getNumString(900000), 'Nine Hundred Thousand');
+            });
+            
+            test('number model testing compound thousands 1001,2015 etc', function(assert) {
+                assert.strictEqual(Number.getNumString(1001), 'One Thousand And One');
+                assert.strictEqual(Number.getNumString(2015), 'Two Thousand And Fifteen');
+                assert.strictEqual(Number.getNumString(3072), 'Three Thousand And Seventy Two');
+                assert.strictEqual(Number.getNumString(4105), 'Four Thousand One Hundred And Five');
+                assert.strictEqual(Number.getNumString(5398), 'Five Thousand Three Hundred And Ninety Eight');
+                assert.strictEqual(Number.getNumString(6500), 'Six Thousand Five Hundred');
+                assert.strictEqual(Number.getNumString(10001), 'Ten Thousand And One');
+                assert.strictEqual(Number.getNumString(20019), 'Twenty Thousand And Nineteen');
+                assert.strictEqual(Number.getNumString(30101), 'Thirty Thousand One Hundred And One');
+                assert.strictEqual(Number.getNumString(40318), 'Fourty Thousand Three Hundred And Eighteen');
+                assert.strictEqual(Number.getNumString(50776), 'Fifty Thousand Seven Hundred And Seventy Six');
+                assert.strictEqual(Number.getNumString(64000), 'Sixty Four Thousand');
+                assert.strictEqual(Number.getNumString(72001), 'Seventy Two Thousand And One');
+                assert.strictEqual(Number.getNumString(85401), 'Eighty Five Thousand Four Hundred And One');
+                assert.strictEqual(Number.getNumString(97898), 'Ninety Seven Thousand Eight Hundred And Ninety Eight');
+                assert.strictEqual(Number.getNumString(100001), 'One Hundred Thousand And One');
+                assert.strictEqual(Number.getNumString(200018), 'Two Hundred Thousand And Eighteen');
+                assert.strictEqual(Number.getNumString(300100), 'Three Hundred Thousand One Hundred');
+                assert.strictEqual(Number.getNumString(400605), 'Four Hundred Thousand Six Hundred And Five');
+                assert.strictEqual(Number.getNumString(500784), 'Five Hundred Thousand Seven Hundred And Eighty Four');
+                assert.strictEqual(Number.getNumString(604300), 'Six Hundred And Four Thousand Three Hundred');
+                assert.strictEqual(Number.getNumString(708216), 'Seven Hundred And Eight Thousand Two Hundred And Sixteen');
+                assert.strictEqual(Number.getNumString(825592), 'Eight Hundred And Twenty Five Thousand Five Hundred And Ninety Two');
+                assert.strictEqual(Number.getNumString(999999), 'Nine Hundred And Ninety Nine Thousand Nine Hundred And Ninety Nine');
+            });
+            
         };
         return {run: run}; /* require.js return run object */
     }

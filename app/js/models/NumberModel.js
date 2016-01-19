@@ -84,6 +84,11 @@ define([
             case 3:
                 return this.getHundreds(num);
                 break;
+            case 4:// fall through - case 4,5 and 6 are same
+            case 5:
+            case 6: 
+                return this.getThousands(num);
+                break;
         }
         
     };
@@ -129,6 +134,43 @@ define([
         
         /* for round hundreds */
         return firstNum + " Hundred";
+    };
+    
+    /**
+     * get Thousands returns a string representation for numbers 1000-9999
+     * @param {int} num
+     * @returns {String}
+     */
+    Number.prototype.getThousands = function(num) {
+        
+        var remainder = this.getRemainder(num,1000);//is number round? e.g. 1000,2000 etc
+        console.log(remainder);
+        /* get string for first digit */
+        if (this.getNumLength(num) === 6) { //hundreds (thousands)
+            var firstNum = this.getHundreds((num-remainder)/1000);
+            console.log(firstNum);
+        } else { //tens (thousands)
+            var firstNum = this.getTens((num-remainder)/1000);
+        }
+        
+        /* for numbers that aren't round thousands */
+        if (remainder !== 0) {
+            
+            /* if the remaining number is hundreds*/
+            if (this.getNumLength(remainder) === 3) {
+                var secondNum = this.getHundreds(remainder);
+                
+                return firstNum + " Thousand " + secondNum;
+            }
+            
+            /* remaining number is less than 100 */
+            var secondNum = this.getTens(remainder);
+            
+            return firstNum + " Thousand And " + secondNum;
+        }
+        
+        /* for round hundreds */
+        return firstNum + " Thousand";
     };
     
     return Number; /* return require.js Number object definition */
