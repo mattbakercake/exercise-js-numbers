@@ -89,6 +89,31 @@ define([
                 assert.strictEqual(Number.getNumString(99), 'Ninety Nine');
             });
             
+            test('number model testing hundreds 100,200 etc', function(assert) {
+                assert.strictEqual(Number.getNumString(100), 'One Hundred');
+                assert.strictEqual(Number.getNumString(200), 'Two Hundred');
+                assert.strictEqual(Number.getNumString(300), 'Three Hundred');
+                assert.strictEqual(Number.getNumString(400), 'Four Hundred');
+                assert.strictEqual(Number.getNumString(500), 'Five Hundred');
+                assert.strictEqual(Number.getNumString(600), 'Six Hundred');
+                assert.strictEqual(Number.getNumString(700), 'Seven Hundred');
+                assert.strictEqual(Number.getNumString(800), 'Eight Hundred');
+                assert.strictEqual(Number.getNumString(900), 'Nine Hundred');
+            });
+            
+            test('number model testing compound hundreds 101,215 etc', function(assert) {
+                assert.strictEqual(Number.getNumString(101), 'One Hundred And One');
+                assert.strictEqual(Number.getNumString(215), 'Two Hundred And Fifteen');
+                assert.strictEqual(Number.getNumString(327), 'Three Hundred And Twenty Seven');
+                assert.strictEqual(Number.getNumString(432), 'Four Hundred And Thirty Two');
+                assert.strictEqual(Number.getNumString(546), 'Five Hundred And Fourty Six');
+                assert.strictEqual(Number.getNumString(658), 'Six Hundred And Fifty Eight');
+                assert.strictEqual(Number.getNumString(763), 'Seven Hundred And Sixty Three');
+                assert.strictEqual(Number.getNumString(874), 'Eight Hundred And Seventy Four');
+                assert.strictEqual(Number.getNumString(989), 'Nine Hundred And Eighty Nine');
+                assert.strictEqual(Number.getNumString(999), 'Nine Hundred And Ninety Nine');
+            });
+            
         };
         return {run: run}; /* require.js return run object */
     }

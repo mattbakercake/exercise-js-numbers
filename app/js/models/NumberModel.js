@@ -81,6 +81,9 @@ define([
             case 2:
                 return this.getTens(num);
                 break;
+            case 3:
+                return this.getHundreds(num);
+                break;
         }
         
     };
@@ -92,7 +95,7 @@ define([
      */
     Number.prototype.getTens = function(num){
         
-        var remainder = this.getRemainder(num,10);
+        var remainder = this.getRemainder(num,10); //is number round? e.g. 20,30 etc 
         
         /* numbers between 20 and 99 */
         if(num > 19 && remainder !== 0) {
@@ -104,6 +107,28 @@ define([
 
         /* numbers between 9 and 19*/
         return this.uniqueStrings[num];
+    };
+    
+    /**
+     * getHundreds returns a string representation for numbers 100-999
+     * @param {int} num
+     * @returns {string}
+     */
+    Number.prototype.getHundreds = function(num) {
+        
+        var remainder = this.getRemainder(num,100);//is number round? e.g. 100,200 etc
+
+        var firstNum = this.getTens((num-remainder)/100);//get string for first digit
+        
+        /* for numbers that are NOT round hundreds */
+        if (remainder !== 0) {
+            var secondNum = this.getTens(remainder);
+            
+            return firstNum + " Hundred And " + secondNum;
+        }
+        
+        /* for round hundreds */
+        return firstNum + " Hundred";
     };
     
     return Number; /* return require.js Number object definition */
