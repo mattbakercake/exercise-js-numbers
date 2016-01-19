@@ -89,10 +89,15 @@ define([
             case 6: 
                 return this.getThousands(num);
                 break;
-            case 7://fall through - case 7,8 and nine are same
+            case 7://fall through - case 7,8 and 9 are same
             case 8:
             case 9:
                 return this.getMillions(num);
+                break;
+            case 10://fall through - case 10,11 and 12 are same
+            case 11:
+            case 12:
+                return this.getBillions(num);
                 break;
         }
         
@@ -176,11 +181,15 @@ define([
         return firstNum + " Thousand";
     };
     
-    
+    /**
+     * getMillions returns a string representation for numbers 1000000-999999999
+     * @param {int} num
+     * @returns {String}
+     */
     Number.prototype.getMillions = function(num) {
         
         var remainder = this.getRemainder(num,1000000);//is number round? e.g. 1000000 etc
-        console.log(num + " : " + remainder);
+
         /* get string for first digit */
         if (this.getNumLength(num) === 9) { //hundreds (millions)
             var firstNum = this.getHundreds((num-remainder)/1000000);
@@ -211,6 +220,52 @@ define([
         
         /* for round millions */
         return firstNum + " Million";
+    };
+    
+    /**
+     * getBillions returns a string represntation for numbers 1000000000-999999999999
+     * @param {int} num
+     * @returns {String}
+     */
+    Number.prototype.getBillions = function(num) {
+        
+        var remainder = this.getRemainder(num,1000000000);//is number round? e.g. 1000000000 etc
+
+        /* get string for first digit */
+        if (this.getNumLength(num) === 12) { //hundreds (billions)
+            var firstNum = this.getHundreds((num-remainder)/1000000000);
+        } else { //tens (billions)
+            var firstNum = this.getTens((num-remainder)/1000000000);
+        }
+        
+        /* for numbers that aren't round thousands */
+        if (remainder !== 0) {
+            
+            /* if remaining number is millions */
+            if (this.getNumLength(remainder) >= 7 && this.getNumLength(remainder) <= 9) {
+                var secondNum = this.getMillions(remainder);
+                
+                return firstNum + " Billion " + secondNum;
+            /* if the remaining number is thousands*/
+            } else if (this.getNumLength(remainder) >= 4 && this.getNumLength(remainder) <= 6) {
+                var secondNum = this.getThousands(remainder);
+                
+                return firstNum + " Billion " + secondNum;
+            /* remaining number is hundreds */    
+            } else if (this.getNumLength(remainder) === 3) {
+                var secondNum = this.getHundreds(remainder);
+                
+                return firstNum + " Billion " + secondNum;
+            }
+            
+            /* remaining number is less than 100 */
+            var secondNum = this.getTens(remainder);
+            
+            return firstNum + " Billion And " + secondNum;
+        }
+        
+        /* for round millions */
+        return firstNum + " Billion";
     };
     
     return Number; /* return require.js Number object definition */
