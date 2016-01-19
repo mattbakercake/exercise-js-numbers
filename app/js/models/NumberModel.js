@@ -89,6 +89,11 @@ define([
             case 6: 
                 return this.getThousands(num);
                 break;
+            case 7://fall through - case 7,8 and nine are same
+            case 8:
+            case 9:
+                return this.getMillions(num);
+                break;
         }
         
     };
@@ -144,11 +149,9 @@ define([
     Number.prototype.getThousands = function(num) {
         
         var remainder = this.getRemainder(num,1000);//is number round? e.g. 1000,2000 etc
-        console.log(remainder);
         /* get string for first digit */
         if (this.getNumLength(num) === 6) { //hundreds (thousands)
             var firstNum = this.getHundreds((num-remainder)/1000);
-            console.log(firstNum);
         } else { //tens (thousands)
             var firstNum = this.getTens((num-remainder)/1000);
         }
@@ -171,6 +174,43 @@ define([
         
         /* for round hundreds */
         return firstNum + " Thousand";
+    };
+    
+    
+    Number.prototype.getMillions = function(num) {
+        
+        var remainder = this.getRemainder(num,1000000);//is number round? e.g. 1000000 etc
+        console.log(num + " : " + remainder);
+        /* get string for first digit */
+        if (this.getNumLength(num) === 9) { //hundreds (millions)
+            var firstNum = this.getHundreds((num-remainder)/1000000);
+        } else { //tens (millions)
+            var firstNum = this.getTens((num-remainder)/1000000);
+        }
+        
+        /* for numbers that aren't round thousands */
+        if (remainder !== 0) {
+            
+            /* if the remaining number is thousands*/
+            if (this.getNumLength(remainder) >= 4 && this.getNumLength(remainder) <= 6) {
+                var secondNum = this.getThousands(remainder);
+                
+                return firstNum + " Million " + secondNum;
+            /* remaining number is hundreds */    
+            } else if (this.getNumLength(remainder) === 3) {
+                var secondNum = this.getHundreds(remainder);
+                
+                return firstNum + " Million " + secondNum;
+            }
+            
+            /* remaining number is less than 100 */
+            var secondNum = this.getTens(remainder);
+            
+            return firstNum + " Million And " + secondNum;
+        }
+        
+        /* for round millions */
+        return firstNum + " Million";
     };
     
     return Number; /* return require.js Number object definition */
