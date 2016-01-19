@@ -11,8 +11,8 @@ for the model code.
 The important aspects of the solution:
 * app/js/models/NumberModel.js contains the number class/object that constructs the string for the number
 * app/js/tests/numberTest.js contains the simple unit tests (using QUnit) used during development
-* The application can be run by installing into web host and navigating to http://**application root** in a browser
-* Unit tests can be run by navigating to http://**application root**/#/tests in a browser
+* The application can be run by installing into web host and navigating to http://*application root* in a browser
+* Unit tests can be run by navigating to http://*application root*/#/tests in a browser
 * View controllers are located in app/js/views
 * View output templates are located in app/js/templates
 
