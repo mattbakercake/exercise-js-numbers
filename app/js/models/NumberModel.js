@@ -154,6 +154,7 @@ define([
     Number.prototype.getThousands = function(num) {
         
         var remainder = this.getRemainder(num,1000);//is number round? e.g. 1000,2000 etc
+        
         /* get string for first digit */
         if (this.getNumLength(num) === 6) { //hundreds (thousands)
             var firstNum = this.getHundreds((num-remainder)/1000);
@@ -197,7 +198,7 @@ define([
             var firstNum = this.getTens((num-remainder)/1000000);
         }
         
-        /* for numbers that aren't round thousands */
+        /* for numbers that aren't round millions */
         if (remainder !== 0) {
             
             /* if the remaining number is thousands*/
@@ -210,8 +211,7 @@ define([
                 var secondNum = this.getHundreds(remainder);
                 
                 return firstNum + " Million " + secondNum;
-            }
-            
+            }   
             /* remaining number is less than 100 */
             var secondNum = this.getTens(remainder);
             
@@ -238,7 +238,7 @@ define([
             var firstNum = this.getTens((num-remainder)/1000000000);
         }
         
-        /* for numbers that aren't round thousands */
+        /* for numbers that aren't round billions */
         if (remainder !== 0) {
             
             /* if remaining number is millions */
@@ -264,7 +264,7 @@ define([
             return firstNum + " Billion And " + secondNum;
         }
         
-        /* for round millions */
+        /* for round billions */
         return firstNum + " Billion";
     };
     
