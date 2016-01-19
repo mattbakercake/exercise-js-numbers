@@ -8,7 +8,7 @@ put together last year using Backbone.js and Require.js.  This allows me to sepa
 view and business logic in a familiar (mvc like) way, and write/utilise simple unit tests 
 for the model code.
 
-The important aspects of the solution:
+### Important Aspects of the Solution: ###
 * app/js/models/NumberModel.js contains the number class/object that constructs the string for the number
 * app/js/tests/numberTest.js contains the simple unit tests (using QUnit) used during development
 * The application can be run by installing into web host and navigating to http://*application root* in a browser
